@@ -14,8 +14,7 @@ const browserRouter = createBrowserRouter(
             element: <Project/>
         }]
     }
-    ]);//most popular version of routers, other:(MemoryRouter - good for testing, StaticRouter - good for Node.Js and servers,
-//HashRouter - if we can`t use full URL in paths,NativeRouter for native works)
+    ]);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
         <RouterProvider router={browserRouter }/>

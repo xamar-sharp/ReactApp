@@ -18,19 +18,9 @@ async function someNetwork(key) {
 }
 export async function getProjects(projectId) {
 	await someNetwork();
-	//if (!projectId) {
 		let projects = await localforage.getItem('projects');
 		if (!projects) projects = [];
 		return projects;
-	//}
-	//else {
-	//	let project = (await localforage.getItem('projects')).find((project) => project.id && project.id == projectId);
-	//	if (!project) project = [{ id: -1 }];
-	//	if (!project.id) {
-	//		project = { id: nanoid() };
-	//	}
-	//	return [project];
-	//}
 }
 export async function createProject() {
 	await someNetwork();

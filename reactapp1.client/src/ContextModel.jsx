@@ -1,3 +1,3 @@
 import { createContext } from 'react';
-const ContextModel = createContext({});//default value as parameter
+const ContextModel = createContext({});
 export default ContextModel;

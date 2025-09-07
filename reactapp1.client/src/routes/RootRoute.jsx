@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet,Link,useLoaderData,Form } from 'react-router-dom';//Form отпарвляет запросы не на сервер а на наше приложение(наш action),а form тег на сервер
+import { Outlet,Link,useLoaderData,Form } from 'react-router-dom';
 import { createProject } from './useStorage';
 export async function myAction() {
 	const project = await createProject();

@@ -15,12 +15,11 @@ function App() {
             setBc('blue');
         }
     }
-
     useLayoutEffect(() => {
-        //вызывается еще до рендеринга, обычно нужен для того чтобы заранее правильно рассчитать размер элемента и правильно его вставить, чтобы пользователь не заметил изменения фонового интерфейса
+       
     }, []);
     useInsertionEffect(() => {
-        //вызывается до useRef,DOM-rendering обычно для того чтобы вставить CSS-стили всем элементам до первого взгляда пользователя
+        
     }, []);
     useEffect(() => {
         document.title = title;
@@ -28,27 +27,8 @@ function App() {
         window.addEventListener('keydown', onEnterDown);
         return () => {
             window.removeEventListener('keydown', onEnterDown);
-        };//и так с каждым EventListener-ом и другой фоновой подпиской
-    }, [title, bc]);//Эффекты это возможность взаимодействия React с внешними системами(например, часть приложения на другом языке или DOM-дерево(Js,not JSX))
-    //второй параметр - массив зависимостей от React(состояний например из React, которые мы хотим использовать, функции React можно испоьзовать без передачи их в зависимость),
-    //эффекты срабатывают один раз после рендеринга и каждый раз при изменении наблюдаемого значения
-
-    //const [forecasts, setForecasts] = useState();
-    //
-    //useEffect(() => {
-    //    populateWeatherData();
-    //}, []);
-
-
-
-    //async function populateWeatherData() {
-    //    const response = await fetch('weatherforecast');
-    //    if (response.ok) {
-    //        const data = await response.json();
-    //        setForecasts(data);
-    //    }
-    //}
-    //props == attributes
+        };
+    }, [title, bc]);
     const Class5 = styled.input`
     color: green;
     display: flex;
@@ -59,7 +39,7 @@ function App() {
     const Class5Ext = styled(Class5)`
     color:'red',
     font-size:47px;
-    `;//указываем только те свойства что хотим модифицировать
+    `;
     const DivCont = styled.div`
     padding: 10px;
     background-color:yellow;
@@ -110,8 +90,6 @@ function App() {
         return <td key={index}>{el}:{index}</td>;
     });
     const el4 = <><h1>{obj.name}</h1> <i>{obj.age}</i></>;
-
-    //const [email, setEmail] = useState('initial-value');//value can be any type
     function onChangeEmail(eventObj) {
         setEmail(eventObj.target.value);
     }
@@ -149,35 +127,30 @@ function App() {
         color: 'orange',
         backgroundColor: 'red',
         fontSize: '10px'
-    };//inline stylization CSS in react
+    };
     function communicate(setDaughterState) {
-        //setDaughterState("s"); ЭТА СТРОЧКА ПРИВОДИТК  ОШИБКЕ ВЕЧНОГО ЦИКЛА РЕРЕНДЕРИНГА ИЗ-ЗА ДВУНАПРАВЛЕННОЙ КОММУНИКАЦИИ КОМПОНЕНТОВ
         other = <h1>OTHER</h1>
     }
     const [value1, setValue1] = useState("CSharp");
-    const firstRef = useRef(null);//default alue can be any type
+    const firstRef = useRef(null);
     function refHandler() {
         firstRef.current.focus();
-        //ref-не реактивен поэтому не нужен для вывода, его изменение не триггерит ререндеринг, нужен для фоновых операций
-        //здесь у input через установку его атрибута ref на наш объект ref позволяет установить ref.current на этот визуальный элемент(input)
-    }//ref-ы должны выполнять либо такую работу, либо вычисление размеров элементов, либо как Ид для фонового таймера,включение медиа,...
+    }
     const [res1, setRes1] = useState(0);
     function hardOperation(state) {
-        return performance.now - 500 * state;//The performance.now() method returns a high resolution timestamp in milliseconds. DateTime.Now in ms
+        return performance.now - 500 * state;
     }
-    const resutl = useMemo(() => hardOperation(res1), [res1]);//Теперь если мы не меняем значение стейта res1 результат не пересчитывается
+    const resutl = useMemo(() => hardOperation(res1), [res1])
     const [data, setData] = useState('');
-    //const modifyData = useCallback(setData(() => "Lazy Loaded Data For Method in Daughter"));
     const [isPending, startTransition] = useTransition();
     const [data1, setData1] = useState('');
     function handleClick34(e) {
         startTransition(() => {
             setData1(e.target.value);
-        });//Transitions - указывают что изменение данного состояния будет происходить с более низким чем у остальных приоритетов+можно узнать isPending ли переход
-        //состояния или уже завершен
+        });
     }
-    const defferedValue1 = useDeferredValue(data1);//альтернатива startTransition
-    return (//( обязательно должен быть на той же строчке с return
+    const defferedValue1 = useDeferredValue(data1);
+    return (
         <>
             <input value={data1} onChange={(e)=>handleClick34(e)}/>
             <h2>{data1} - {isPending}</h2>

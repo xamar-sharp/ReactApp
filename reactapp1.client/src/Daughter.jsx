@@ -3,7 +3,7 @@ import GrandDaughter from './GrandDaughter';
 import styles from './Daughter.module.css';
 function Daughter(attributes) {
     const [text, setText] = useState('0');
-    attributes.parentComponentStateChange(setText);//через методы передаваемые в атрибутах мы можем наладить общение и влияние дочерних компонентов на родительские и наоборот
+    attributes.parentComponentStateChange(setText);
     return <div>
         <h1 class={styles.head1}>{attributes.title + text}</h1>
         <h2 class={styles.head2}>{attributes.title}</h2>
